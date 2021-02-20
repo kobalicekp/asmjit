@@ -393,7 +393,7 @@ static const char* VirtMem_getTmpDir() noexcept {
 #endif
 
 static Error VirtMem_openAnonymousMemory(AnonymousMemory* anonMem, bool preferTmpOverDevShm) noexcept {
-#if defined(SYS_memfd_create)
+#if defined(SYS_memfd_create) && defined(__NR_memfd_create)
   // Linux specific 'memfd_create' - if the syscall returns `ENOSYS` it means
   // it's not available and we will never call it again (would be pointless).
 
